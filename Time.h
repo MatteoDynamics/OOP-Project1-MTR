@@ -10,23 +10,32 @@ class Time {
     int sec;
     int min;
     int h;
-    void change_h();
-    void change_m();
-    void change_s();
+    void change_h(int hour);
+    void change_m(int minute);
+    void change_s(int s);
 
 public:
     Time();
-    Time(int h, int min, int s);
+    Time(int hour, int minute, int seconds);
     Time(int min, int s);
     Time(int s);
     ~Time();
-    void set_time();
-    void set_time_sm();
-    void set_time_s();
-    void look();
-    void show();
-    Time add_time(const Time& t1, const Time& t2);
-    bool cmp_time(const Time& t1, const Time& t2);
+    void set_time(int hour=0, int minute=0, int sec=0);
+    void set_time_sm(int min=0, int sec=0);
+    void set_time_s(int s=0);
+    void look()const;
+    void show() const;
+    //Time add_time(const Time& t1, const Time& t2);
+    bool operator>(const Time& t1)const;
+    bool operator==(const Time& t1)const;
+    bool operator<=(const Time& t1)const;
+    bool operator>=(const Time& t1)const;
+    bool operator<(const Time& t1)const;
+    Time operator+(const Time& other) const;
+    void operator+(int sec);
+
+
+
 };
 
 

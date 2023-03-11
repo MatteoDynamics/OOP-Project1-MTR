@@ -6,7 +6,7 @@
 #include "time.h"
 #include <iostream>
 
-void Schedule::add_time_to_schedule(const Time t1)
+void Schedule::add_time_to_schedule(const Time&t1)
 {
     if(times_counter<10)
     times_counter++;
@@ -22,7 +22,7 @@ void Schedule::show_schedule() {
         container[i].show();
     }
 }
-int Schedule::times_count()
+int Schedule::times_count() const
 {
     return times_counter;
 }

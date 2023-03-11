@@ -10,9 +10,9 @@ class Schedule {
 Time *container = new Time[10];
 int times_counter = 0;
 public:
-    void add_time_to_schedule(const Time t1);
+    void add_time_to_schedule(const Time& t1);
     void show_schedule();
-    int times_count();
+    int times_count() const;
 };
 
 

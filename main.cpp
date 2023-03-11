@@ -3,14 +3,29 @@
 #include "schedule.h"
 int main() {
     Time t1,t2;
-    t1.set_time();
-    t2.set_time();
-    t1.look();
+    t1.set_time(1,25,40);
+    t2.set_time(0,50,30);
+
+    //t1.look();
     t1.show();
     t2.show();
-    t1.cmp_time(t1,t2);
-    std::cout << "added time:   ";
-    Time t3 = t1.add_time(t1, t2); // corrected line
+    if (t1 > t2) {
+        std::cout << "c1 jest wieksze od c2" << std::endl;
+    }
+    if (t1 >= t2) {
+        std::cout << "c1 jest wieksze||rowne od c2" << std::endl;
+    }
+    if (t1 == t2) {
+        std::cout << "c1 jest tskie same jak c2" << std::endl;
+    }
+    if (t1 < t2) {
+        std::cout << "c1 jest mniejsze od c2" << std::endl;
+    }
+    if (t1 <= t2) {
+        std::cout << "c1 jest mniejsze||rowne od c2" << std::endl;
+    }
+    Time t3 = t1 + t2; // corrected line
+    t3 + 90;
     t3.show(); // corrected line
     Schedule s1;
     s1.add_time_to_schedule(t3);

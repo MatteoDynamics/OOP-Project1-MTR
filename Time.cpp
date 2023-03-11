@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Time::Time(int hour, int minutes, int seconds) {
+Time::Time(int hour, int minute, int seconds) {
     h = hour;
-    min = minutes;
+    min = minute;
     sec = seconds;
 }
 
@@ -24,17 +24,18 @@ Time::Time(int seconds) {
     sec = seconds;
 }
 Time::Time(){
-
+cout <<"Konstruktor"<<endl;
 }
 
 Time::~Time()
 {
+    cout<< "destructor"<<endl;
 };
 
-void Time::change_h() {
+void Time::change_h(int hour) {
 
     do {
-            cin >> h;
+            h = hour;
 
             if (h < 0 || h > 24)
             {
@@ -42,10 +43,10 @@ void Time::change_h() {
             }
         } while (h < 0 || h > 24);
     }
-void Time::change_m() {
+void Time::change_m(int minute) {
 
     do {
-        cin >> min;
+        min = minute;
         if ( min < 0 || min > 60)
         {
             cout << "wrong format of time type again:"<< endl;
@@ -53,11 +54,11 @@ void Time::change_m() {
     } while (min < 0 || min > 60);
 }
 
-void Time::change_s() {
+void Time::change_s(int s) {
 
     do {
 
-        cin >> sec;
+        sec = s;
         if (sec < 0 || sec > 60)
         {
             cout << "wrong format of time type again:"<< endl;
@@ -65,63 +66,110 @@ void Time::change_s() {
     } while (sec < 0 || sec > 60);
 }
 
-void Time::look() {
+void Time::look() const{
     cout << h << endl;
     cout << sec << endl;
     cout << min << endl;
 }
 
-void Time::show() {
+void Time::show() const{
     cout << "Czas: " << h << ":"<< min << ":" << sec << endl;
 }
 
-void Time::set_time()
+void Time::set_time(int hour, int min, int sec)
 {
-    change_h();
-    change_m();
-    change_s();
+    change_h(hour);
+    change_m(min);
+    change_s(sec);
 }
-void Time::set_time_sm()
+void Time::set_time_sm(int min, int sec)
 {
-    change_m();
-    change_s();
+    change_m(min);
+    change_s(sec);
 }
-void Time::set_time_s()
+void Time::set_time_s(int s)
 {
-    change_s();
+    change_s(s);
 }
 
-Time Time::add_time(const Time& t1, const Time& t2) 
-{
-    Time t3;
-    t3.sec = t1.sec + t2.sec;
-    t3.min = t1.min + t2.min;
-    t3.h = t2.h + t1.h;
+Time Time :: operator+(const Time& other) const{
+    Time result;
+    result.sec = sec + other.sec;
+    result.min = min + other.min;
+    result.h = h + other.h;
 
-    if (t3.sec >= 60) {
-        t3.min += t3.sec / 60;
-        t3.sec %= 60;
+    if (result.sec >= 60) {
+        result.min += result.sec / 60;
+        result.sec %= 60;
     }
-    if (t3.min >= 60) {
-        t3.h += t3.min / 60;
-        t3.min %= 60;
+    if (result.min >= 60) {
+        result.h += result.min / 60;
+        result.min %= 60;
     }
-    if (t3.h >= 24) {
-        t3.h %= 24;
+    if (result.h >= 24) {
+        result.h %= 24;
     }
-    return t3;
+
+    return result;
 }
-bool Time::cmp_time(const Time& t1, const Time& t2) {
-    if((t1.h>t2.h) || (t1.h>=t2.h)  &&  (t1.min>t2.min) ||  (t1.h>=t2.h)  &&  (t1.min>=t2.min) &&   (t1.sec>t2.sec))
+bool Time::operator<(const Time &t1) const {
+    if((t1.h>h) || (t1.h>=h)  &&  (t1.min>min) ||  (t1.h>=h)  &&  (t1.min>=min) &&   (t1.sec>sec))
     {
-        cout << "t1 is higher than t2"<<endl;
+        //cout << "t1 is higher than t2"<<endl;
         return true;
     }
-    else if(t1.h == t2.h && t1.min == t2.min && t1.sec == t2.sec)
-    {
-    cout << "they are the same"<<endl;
-    }
-    else cout << "t2 is higher than t1"<<endl;
+    else //cout << "t2 is higher than t1"<<endl;
     return false;
+}
+bool Time::operator>(const Time &t1) const {
+    if((t1.h<h) || (t1.h<=h)  &&  (t1.min<min) ||  (t1.h<=h)  &&  (t1.min<=min) &&   (t1.sec<sec))
+    {
+        //cout << "t1 is higher than t2"<<endl;
+        return true;
+    }
+    else //cout << "t2 is higher than t1"<<endl;
+        return false;
+}
+bool Time :: operator==(const Time& t1)const
+{
+    if(t1.h==h && t1.min == min && t1.sec == sec)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+bool Time :: operator<=(const Time& t1)const
+{
+    if(!(*this >t1) || *this == t1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+bool Time :: operator>=(const Time& t1)const
+{
+    if((*this >t1) || *this == t1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void Time::operator+(int sec) {
+        this->sec += sec;
+        if(sec>59)
+        {
+            this->sec = this->sec%60;
+            this->min += 1;
+        }
 }
 
