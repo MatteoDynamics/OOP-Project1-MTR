@@ -13,14 +13,13 @@ class Time {
     void change_h(int hour);
     void change_m(int minute);
     void change_s(int s);
-
+    void set_time(int hour=0, int minute=0, int sec=0);
 public:
     Time();
     Time(int hour, int minute, int seconds);
     Time(int min, int s);
     Time(int s);
     ~Time();
-    void set_time(int hour=0, int minute=0, int sec=0);
     void set_time_sm(int min=0, int sec=0);
     void set_time_s(int s=0);
     void look()const;

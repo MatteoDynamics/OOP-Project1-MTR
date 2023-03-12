@@ -2,9 +2,10 @@
 #include "Time.h"
 #include "schedule.h"
 int main() {
-    Time t1,t2;
-    t1.set_time(1,25,40);
-    t2.set_time(0,50,30);
+    Time t1(1,25,40);
+    Time t2(0,50,30);
+   // t1.set_time(1,25,40);
+    //t2.set_time(0,50,30);
 
     //t1.look();
     t1.show();
@@ -29,9 +30,18 @@ int main() {
     t3.show(); // corrected line
     Schedule s1;
     s1.add_time_to_schedule(t3);
+    s1.add_time_to_schedule(t1);
     s1.add_time_to_schedule(t2);
-    std::cout<< "counter == "<< s1.times_count()<<std::endl;
+    s1.add_time_to_schedule(t2);
+    s1.add_time_to_schedule(t2);
+     Time t4 = s1.schedule_sum();
+     t4.show();
     s1.show_schedule();
+    std::cout<<std::endl<< "counter == "<< s1.times_count()<<std::endl;
+    s1.ref(0) = t2;
+    s1.ref(1) = t2;
+    s1.show_schedule();
+
 }
 
 

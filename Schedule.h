@@ -13,6 +13,8 @@ public:
     void add_time_to_schedule(const Time& t1);
     void show_schedule();
     int times_count() const;
+    Time &ref(int index);
+    Time schedule_sum();
 };
 
 

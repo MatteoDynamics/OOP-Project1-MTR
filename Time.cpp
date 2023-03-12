@@ -7,9 +7,7 @@
 using namespace std;
 
 Time::Time(int hour, int minute, int seconds) {
-    h = hour;
-    min = minute;
-    sec = seconds;
+    set_time( hour, minute,seconds);
 }
 
 Time::Time(int minutes, int seconds) {
@@ -24,46 +22,58 @@ Time::Time(int seconds) {
     sec = seconds;
 }
 Time::Time(){
-cout <<"Konstruktor"<<endl;
+//cout <<"Konstruktor"<<endl;
 }
 
 Time::~Time()
 {
-    cout<< "destructor"<<endl;
+    //cout<< "destructor"<<endl;
 };
 
 void Time::change_h(int hour) {
 
-    do {
             h = hour;
 
-            if (h < 0 || h > 24)
+            if (h > 24)
             {
-                cout << "wrong format of time type again:"<< endl;
+                cout << "wrong format of time, converted:"<< endl;
+                h = h%24;
             }
-        } while (h < 0 || h > 24);
+            if (h<0)
+            {
+                this->h = 0;
+            }
     }
 void Time::change_m(int minute) {
 
-    do {
         min = minute;
-        if ( min < 0 || min > 60)
+        if (min > 60)
         {
-            cout << "wrong format of time type again:"<< endl;
+            cout << "wrong format of time, converted:"<< endl;
+            h +=min/60;
+            min = min%60;
+
         }
-    } while (min < 0 || min > 60);
+        if (min<0)
+        {
+            min = 0;
+        }
 }
 
 void Time::change_s(int s) {
 
-    do {
 
         sec = s;
-        if (sec < 0 || sec > 60)
+        if (sec > 60)
         {
-            cout << "wrong format of time type again:"<< endl;
+            cout << "wrong format of time, converted:"<< endl;
+            sec = s%60;
+
         }
-    } while (sec < 0 || sec > 60);
+        if (sec<0)
+        {
+            sec = 0;
+        }
 }
 
 void Time::look() const{
