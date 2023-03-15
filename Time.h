@@ -20,8 +20,8 @@ public:
     Time(int min, int s);
     Time(int s);
     ~Time();
-    void set_time_sm(int min=0, int sec=0);
-    void set_time_s(int s=0);
+    //void set_time_sm(int min=0, int sec=0);
+    //void set_time_s(int s=0);
     void look()const;
     void show() const;
     //Time add_time(const Time& t1, const Time& t2);

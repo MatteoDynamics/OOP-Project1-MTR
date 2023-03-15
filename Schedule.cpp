@@ -30,7 +30,7 @@ Time& Schedule :: ref(int index) {
     return container[index];
 }
 Time Schedule::schedule_sum() {
-    Time temp=0;
+    Time temp;
     for (int i =0; i<times_counter; i++)
     {
         temp = temp + container[i];

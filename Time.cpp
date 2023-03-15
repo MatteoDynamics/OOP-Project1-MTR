@@ -6,22 +6,21 @@
 
 using namespace std;
 
-Time::Time(int hour, int minute, int seconds) {
-    set_time( hour, minute,seconds);
+Time::Time(int hour, int minute, int seconds)
+{
+    set_time( hour, minute, seconds);
 }
 
-Time::Time(int minutes, int seconds) {
-    h = 0;
-    min = minutes;
-    sec = seconds;
+Time::Time(int minutes, int seconds) : Time(0,minutes,seconds)
+{
 }
 
-Time::Time(int seconds) {
-    h =0;
-    min = 0;
-    sec = seconds;
+Time::Time(int seconds): Time(0,0,seconds)
+{
 }
-Time::Time(){
+Time::Time() : Time(0,0,0)
+{
+
 //cout <<"Konstruktor"<<endl;
 }
 
@@ -92,15 +91,15 @@ void Time::set_time(int hour, int min, int sec)
     change_m(min);
     change_s(sec);
 }
-void Time::set_time_sm(int min, int sec)
-{
-    change_m(min);
-    change_s(sec);
-}
-void Time::set_time_s(int s)
-{
-    change_s(s);
-}
+//void Time::set_time_sm(int min, int sec)
+//{
+//    change_m(min);
+//    change_s(sec);
+//}
+//void Time::set_time_s(int s)
+//{
+//    change_s(s);
+//}
 
 Time Time :: operator+(const Time& other) const{
     Time result;
