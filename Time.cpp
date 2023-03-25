@@ -20,14 +20,8 @@ Time::Time(int seconds): Time(0,0,seconds)
 }
 Time::Time() : Time(0,0,0)
 {
-
-//cout <<"Konstruktor"<<endl;
 }
 
-Time::~Time()
-{
-    //cout<< "destructor"<<endl;
-};
 
 void Time::change_h(int hour) {
 
@@ -91,15 +85,6 @@ void Time::set_time(int hour, int min, int sec)
     change_m(min);
     change_s(sec);
 }
-//void Time::set_time_sm(int min, int sec)
-//{
-//    change_m(min);
-//    change_s(sec);
-//}
-//void Time::set_time_s(int s)
-//{
-//    change_s(s);
-//}
 
 Time Time :: operator+(const Time& other) const{
     Time result;

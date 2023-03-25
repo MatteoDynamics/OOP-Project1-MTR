@@ -19,12 +19,8 @@ public:
     Time(int hour, int minute, int seconds);
     Time(int min, int s);
     Time(int s);
-    ~Time();
-    //void set_time_sm(int min=0, int sec=0);
-    //void set_time_s(int s=0);
     void look()const;
     void show() const;
-    //Time add_time(const Time& t1, const Time& t2);
     bool operator>(const Time& t1)const;
     bool operator==(const Time& t1)const;
     bool operator<=(const Time& t1)const;
