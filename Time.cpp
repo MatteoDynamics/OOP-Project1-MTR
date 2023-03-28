@@ -158,12 +158,21 @@ bool Time :: operator>=(const Time& t1)const
     }
 }
 
-void Time::operator+(int sec) {
-        this->sec += sec;
-        if(sec>59)
+
+void Time::operator+(int s) {
+    this->sec += s;
+    if (this->sec >= 60)
+    {
+        int extra_minutes = this->sec / 60;
+        this->sec = this->sec % 60;
+        this->min += extra_minutes;
+        if (this->min >= 60)
         {
-            this->sec = this->sec%60;
-            this->min += 1;
+            int extra_hours = this->min / 60;
+            this->min = this->min % 60;
+            this->h += extra_hours;
         }
+    }
 }
+
 

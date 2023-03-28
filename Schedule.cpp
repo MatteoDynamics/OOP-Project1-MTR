@@ -65,23 +65,26 @@ Schedule::Schedule(const Schedule &schedule) {
     copy_schedule(schedule);
 }
 
-void Schedule::add_time_to_schedule(const Time&time)
+void Schedule::add_time_to_schedule(const Time& time)
 {
-    times_counter++;
-    Time *tmp = new Time[times_counter];
-    for(int i=0; i< times_counter ; i++)
+    Time* tmp = new Time[times_counter + 1];
+    for(int i = 0; i < times_counter; i++)
     {
-        tmp[i] = time;
+        tmp[i] = container[i];
     }
-        delete[]container;
+    tmp[times_counter] = time;
+    times_counter++;
+    delete[] container;
     container = tmp;
 }
+
 void Schedule::show_schedule() {
     for(int i=0; i<times_counter; i++)
     {
         std::cout<< "time "<< i <<"= ";
         container[i].show();
     }
+    std::cout << std::endl;
 }
 int Schedule::times_count() const
 {
